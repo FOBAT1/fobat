@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>F.O.B.A.T - Força Operacional Binacional de Ações Táticas</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/168f5774-8dca-4422-8a9a-df26fab93645/dh316g6-123e80c1-5664-44fb-8fb0-e652ed5d4699.png/v1/fill/w_1192,h_670,q_70,strp/ghost_recon_breakpoint__golem_island_by_zom8ieoutlaw_dh316g6-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvMTY4ZjU3NzQtOGRjYS00NDIyLThhOWEtZGYyNmZhYjkzNjQ1XC9kaDMxNmc2LTEyM2U4MGMxLTU2NjQtNDRmYi04ZmIwLWU2NTJlZDVkNDY5OS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.1C-9R1MXvnOsJICw0KPd7D6iI5PjIq5qYeKm29moAng') no-repeat center center fixed;
+    background-size: cover;
+    color: #eee;
+    display: flex;
+    min-height: 100vh;
+  }
+  /* Overlay para escurecer o fundo */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 0;
+  }
+
+  /* Sidebar */
+  nav.sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 240px;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    border-right: 3px solid #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    z-index: 10;
+  }
+  nav.sidebar img.logo {
+    width: 140px;
+    margin-bottom: 30px;
+    user-select: none;
+  }
+  nav.sidebar ul {
+    list-style: none;
+    width: 100%;
+  }
+  nav.sidebar ul li {
+    width: 100%;
+  }
+  nav.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 30px;
+    color: #ddd;
+    font-weight: 600;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+  nav.sidebar ul li a svg {
+    fill: #bbb;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: fill 0.3s ease;
+  }
+  nav.sidebar ul li a:hover,
+  nav.sidebar ul li a.active {
+    color: #fff;
+    background: rgba(255 255 255 / 0.1);
+    border-left-color: #bbb;
+  }
+  nav.sidebar ul li a:hover svg,
+  nav.sidebar ul li a.active svg {
+    fill: #eee;
+  }
+
+  /* Main content */
+  main.content {
+    margin-left: 240px;
+    padding: 40px 60px;
+    flex-grow: 1;
+    background: transparent;
+    overflow-y: auto;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+  main.content h2 {
+    color: #bbb;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 5px;
+  }
+  main.content h1.hero-title {
+    font-weight: 700;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 12px;
+    user-select: none;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  }
+  main.content p.hero-subtitle {
+    font-size: 1.3rem;
+    color: #ddd;
+    font-weight: 600;
+    margin-bottom: 40px;
+    user-select: none;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+  }
+  main.content p {
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #ddd;
+    text-shadow: 0 0 4px rgba(0,0,0,0.7);
+  }
+
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 18px;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .gallery img:hover {
+    border-color: #bbb;
+    box-shadow: 0 0 20px #bbb;
+    transform: scale(1.05);
+  }
+
+  /* News */
+  .news-item {
+    padding-left: 12px;
+    border-left: 4px solid #bbb;
+    margin-bottom: 20px;
+    color: #ddd;
+    text-shadow: 0 0 4px rgba(0,0,0,0.7);
+  }
+  .news-item strong {
+    color: #fff;
+  }
+
+  /* Contact links */
+  a.contact-link {
+    color: #bbb;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: text;
+    transition: color 0.3s ease;
+  }
+  a.contact-link:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    border-top: 2px solid #bbb;
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    user-select: none;
+    text-shadow: 0 0 3px rgba(0,0,0,0.7);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav.sidebar {
+      width: 60px;
+      padding: 20px 0 0 0;
+    }
+    nav.sidebar img.logo {
+      display: none;
+    }
+    nav.sidebar ul li a {
+      justify-content: center;
+      padding: 20px 0;
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      flex-direction: column;
+      gap: 5px;
+    }
+    nav.sidebar ul li a svg {
+      width: 24px;
+      height: 24px;
+    }
+    nav.sidebar ul li a:hover,
+    nav.sidebar ul li a.active {
+      border-left: none;
+      border-bottom-color: #bbb;
+      background: transparent;
+      color: #fff;
+    }
+    main.content {
+      margin-left: 60px;
+      padding: 30px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sidebar" role="navigation" aria-label="Menu principal">
+  <img class="logo" src="https://sdmntpreastus.oaiusercontent.com/files/00000000-d0d0-61f9-b5cc-fc6294ebe072/raw?se=2025-08-02T13%3A15%3A28Z&sp=r&sv=2024-08-04&sr=b&scid=920c5c27-da28-5ce6-ace2-661e6bfbced7&skoid=02b7f7b5-29f8-416a-aeb6-99464748559d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-02T09%3A53%3A05Z&ske=2025-08-03T09%3A53%3A05Z&sks=b&skv=2024-08-04&sig=s/ehmSF5jn91BIGbl7KK7/SvWMbMKvDCWV7eNg8AiHk%3D" alt="Logo F.O.B.A.T" />
+  <ul>
+    <li><a href="#home" class="active" aria-current="page" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9 9 9-1.5 1.5L12 5.5 4.5 13.5z"/><path d="M12 22v-8h6v8z"/></svg>
+      <span class="nav-label">Home</span>
+    </a></li>
+    <li><a href="#operacoes" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+      <span class="nav-label">Operações</span>
+    </a></li>
+    <li><a href="#galeria" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+      <span class="nav-label">Galeria</span>
+    </a></li>
+    <li><a href="#noticias" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h12v2H3z"/></svg>
+      <span class="nav-label">Notícias</span>
+    </a></li>
+    <li><a href="#contato" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3h20v18H2z"/></svg>
+      <span class="nav-label">Contato</span>
+    </a></li>
+    <li><a href="#recrutamento" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2 0 4-1 4-3s-2-3-4-3-4 1-4 3 2 3 4 3z"/></svg>
+      <span class="nav-label">Recrutamento</span>
+    </a></li>
+  </ul>
+</nav>
+
+<main class="content" role="main" tabindex="-1">
+  <section id="home" tabindex="0" aria-label="Seção Institucional">
+    <h1 class="hero-title">A morte não é o fim — é apenas o recomeço para novas lutas.</h1>
+    <p class="hero-subtitle">Não lutamos por glória, mas por propósito.</p>
+    <h2>Institucional</h2>
+    <p>A F.O.B.A.T – Força Operacional Binacional de Ações Táticas – é uma unidade de elite dedicada a missões especiais, operando sob os princípios de lealdade, precisão e fraternidade entre nações. Atuamos nas sombras, firmes na doutrina, leais até o último suspiro.</p>
+  </section>
+
+  <section id="operacoes" tabindex="0" aria-label="Seção Operações">
+    <h2>Operações</h2>
+    <p>As operações da F.O.B.A.T incluem missões conjuntas de infiltração, resgate, neutralização de ameaças e reconhecimento aéreo com drones e tecnologia avançada. Nossas unidades estão preparadas para cenários de guerra híbrida e combate urbano.</p>
+  </section>
+
+  <section id="galeria" tabindex="0" aria-label="Seção Galeria">
+    <h2>Galeria</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1616352119444-ae3ac49b90dd?auto=format&fit=crop&w=700&q=80" alt="Operação 1" />
+      <img src="https://images.unsplash.com/photo-1581092918360-c70cfa5bfa6c?auto=format&fit=crop&w=700&q=80" alt="Operação 2" />
+      <img src="https://images.unsplash.com/photo-1590691565602-ef372f23540b?auto=format&fit=crop&w=700&q=80" alt="Treinamento" />
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Drone" />
+      <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=700&q=80" alt="Equipe" />
+      <img src="https://images.unsplash.com/photo-1511324524655-c9c6bc984f49?auto=format&fit=crop&w=700&q=80" alt="Aeronave" />
+    </div>
+  </section>
+
+  <section id="noticias" tabindex="0" aria-label="Seção Notícias">
+    <h2>Notícias</h2>
+    <div class="news-item"><strong>[30/07/2025]</strong> Equipe Alpha realiza missão conjunta com tropas aliadas em região de selva hostil. Resultados foram acima do esperado, com captura de objetivos críticos.</div>
+    <div class="news-item"><strong>[20/07/2025]</strong> Novo programa de simulação tática é implementado com apoio de forças internacionais.</div>
+    <div class="news-item"><strong>[10/07/2025]</strong> Treinamento de resgate aéreo realizado com sucesso na base binacional.</div>
+  </section>
+
+  <section id="contato" tabindex="0" aria-label="Seção Contato">
+    <h2>Contato</h2>
+    <p>Email: <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/soareshxc" target="_blank" rel="noopener" class="contact-link">@soareshxc</a></p>
+    <p>Discord: <a href="https://discord.gg/vZ8QtAA7" target="_blank" rel="noopener" class="contact-link">discord.gg/vZ8QtAA7</a></p>
+  </section>
+
+  <section id="recrutamento" tabindex="0" aria-label="Seção Recrutamento">
+    <h2>Recrutamento</h2>
+    <p>Quer fazer parte da F.O.B.A.T? Estamos recrutando novos membros para nossas operações táticas. Buscamos profissionais dedicados, treinados e comprometidos com nossos valores.</p>
+    <p>Envie seu currículo e carta de apresentação para <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a> com o assunto “Recrutamento F.O.B.A.T”.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 F.O.B.A.T – Todos os direitos reservados.
+  </footer>
+</main>
+
+<script>
+  // Marcar item ativo conforme scroll
+  const sections = document.querySelectorAll('main.content section');
+  const navLinks = document.querySelectorAll('nav.sidebar ul li a');
+
+  function onScroll() {
+    const scrollPos = window.scrollY + 200; 
+    sections.forEach(section => {
+      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + section.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+
+  // Navegação acessível: focar main no click do menu
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const id = link.getAttribute('href').slice(1);
+      const section = document.getElementById(id);
+      section.focus();
+    });
+  });
+</script>
+
+</body>
+</html>
