@@ -203,6 +203,23 @@
     text-shadow: 0 0 3px rgba(0,0,0,0.7);
   }
 
+  /* Botão Políticas de Privacidade */
+  button.privacy-btn {
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #bbb;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-top: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  button.privacy-btn:hover {
+    background: #bbb;
+    color: #000;
+  }
+
   /* Responsive */
   @media (max-width: 900px) {
     nav.sidebar {
@@ -315,6 +332,11 @@
     <p>Envie seu currículo e carta de apresentação para <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a> com o assunto “Recrutamento F.O.B.A.T”.</p>
   </section>
 
+  <!-- Botão Políticas de Privacidade -->
+  <div style="text-align: center;">
+    <button class="privacy-btn" onclick="window.open('politicas.html', '_blank')">Políticas de Privacidade</button>
+  </div>
+
   <footer>
     &copy; 2025 F.O.B.A.T – Todos os direitos reservados.
   </footer>
@@ -352,4 +374,3 @@
 
 </body>
 </html>
-
