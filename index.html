@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>F.O.B.A.T - Força Operacional Binacional de Ações Táticas</title>
+<link rel="icon" type="image/png" href="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-4ad4-622f-a483-0cb91ba5cc26/raw?se=2025-08-02T18%3A09%3A58Z&sp=r&sv=2024-08-04&sr=b&scid=a370f0a4-69cb-55de-924f-fd91ea07ba61&skoid=5c72dd08-68ae-4091-b4e1-40ccec0693ae&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-01T20%3A15%3A02Z&ske=2025-08-02T20%3A15%3A02Z&sks=b&skv=2024-08-04&sig=SBF7TXgQqefjdc3ea7OvIx2wkG/hVPDAsd7FFWnWLY4%3D" />
+
+<style>
+  /* RESET */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: url('https://cdna.artstation.com/p/assets/images/images/024/166/178/large/antoine-arthur-grb-background.jpg?1581520444') no-repeat center center fixed;
+    background-size: cover;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Background overlay for readability */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,17,0.85);
+    z-index: -1;
+  }
+
+  a {
+    color: #77aaff;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+  nav {
+    background: rgba(34,34,34,0.9);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav img.logo {
+    height: 50px;
+    margin-right: 1rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover,
+  nav ul li a:focus {
+    background: #444;
+    color: #fff;
+  }
+  nav ul li a svg {
+    width: 20px;
+    height: 20px;
+    fill: #ccc;
+  }
+  nav ul li a.active svg,
+  nav ul li a:hover svg,
+  nav ul li a:focus svg {
+    fill: #fff;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  h1.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+  }
+
+  .gallery {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+  }
+  .gallery img {
+    border-radius: 8px;
+    height: 150px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .gallery img:hover,
+  .gallery img:focus {
+    transform: scale(1.1);
+    outline: 2px solid #77aaff;
+  }
+
+  .news-item {
+    background: rgba(34,34,34,0.85);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+  .news-item strong {
+    color: #aad4ff;
+  }
+
+  .contact-link {
+    color: #77aaff;
+  }
+  .contact-link:hover,
+  .contact-link:focus {
+    text-decoration: underline;
+  }
+
+  .faq-item {
+    margin-bottom: 1rem;
+  }
+  .faq-question {
+    background: rgba(34,34,34,0.9);
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    color: #eee;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .faq-question:hover,
+  .faq-question:focus {
+    background: #556677;
+  }
+  .faq-question.active {
+    background: #77aaff;
+    color: #111;
+  }
+  .faq-answer {
+    background: rgba(51,51,51,0.85);
+    padding: 1rem;
+    border-radius: 0 0 6px 6px;
+    margin-top: -1rem;
+    color: #ddd;
+  }
+
+  .testimonial {
+    background: rgba(34,34,34,0.85);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-style: italic;
+    color: #ddd;
+  }
+  .testimonial strong {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: #77aaff;
+  }
+
+  #backToTop {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #77aaff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #111;
+    display: none;
+  }
+  #backToTop.show {
+    display: block;
+  }
+
+  footer {
+    background: rgba(34,34,34,0.9);
+    padding: 1rem 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+  }
+  .privacy-btn {
+    background: none;
+    border: 1px solid #77aaff;
+    color: #77aaff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .privacy-btn:hover,
+  .privacy-btn:focus {
+    background: #77aaff;
+    color: #111;
+  }
+
+  /* Modal Política de Privacidade */
+  #privacyModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+  #privacyModal > div {
+    background: url('https://cdnb.artstation.com/p/assets/images/images/021/164/783/large/clement-rigondet-ubi-behemoth-dive2-1080p.jpg?1570632003') no-repeat center center;
+    background-size: cover;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    color: #eee;
+    text-shadow: 0 0 6px #000;
+  }
+  #privacyModal h2 {
+    margin-bottom: 1rem;
+    color: #77aaff;
+    text-align: center;
+  }
+  #privacyModal p, #privacyModal ul {
+    margin-bottom: 1rem;
+  }
+  #privacyModal a {
+    color: #aad4ff;
+    text-decoration: underline;
+  }
+  #privacyModal a:hover, #privacyModal a:focus {
+    color: #cce6ff;
+  }
+  #privacyModal .modal-logo {
+    display: block;
+    margin: 0 auto 1rem auto;
+    max-height: 80px;
+  }
+  #closePrivacy {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #77aaff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Menu principal">
+  <img src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-4ad4-622f-a483-0cb91ba5cc26/raw?se=2025-08-02T18%3A09%3A58Z&sp=r&sv=2024-08-04&sr=b&scid=a370f0a4-69cb-55de-924f-fd91ea07ba61&skoid=5c72dd08-68ae-4091-b4e1-40ccec0693ae&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-01T20%3A15%3A02Z&ske=2025-08-02T20%3A15%3A02Z&sks=b&skv=2024-08-04&sig=SBF7TXgQqefjdc3ea7OvIx2wkG/hVPDAsd7FFWnWLY4%3D" alt="Logo FOBAT" class="logo" />
+  <ul>
+    <li><a href="#home" class="active" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span class="nav-label">Home</span>
+    </a></li>
+    <li><a href="#operacoes">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-3V3H7v3H4v14h16z"/></svg>
+      <span class="nav-label">Operações</span>
+    </a></li>
+    <li><a href="#galeria">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 19V5H3v14h18zM5 7h14v10H5z"/></svg>
+      <span class="nav-label">Galeria</span>
+    </a></li>
+    <li><a href="#noticias">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 10h18v2H3zM3 14h12v2H3z"/></svg>
+      <span class="nav-label">Notícias</span>
+    </a></li>
+    <li><a href="#contato">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8V7l-3 2-2-1-3 3-3-2-4 3v5h18z"/></svg>
+      <span class="nav-label">Contato</span>
+    </a></li>
+    <li><a href="#recrutamento">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14l5-5 5 5H7z"/></svg>
+      <span class="nav-label">Recrutamento</span>
+    </a></li>
+  </ul>
+</nav>
+
+<main role="main" tabindex="-1">
+  <section id="home" class="fade-in visible" aria-label="Seção principal - Home">
+    <h1 class="hero-title">F.O.B.A.T</h1>
+    <p class="hero-subtitle">Força Operacional Binacional de Ações Táticas</p>
+    <p>Unidade tática de elite atuando nas sombras, firmes na doutrina, leais até o último suspiro.</p>
+    <p>A morte não é o fim — é apenas o recomeço para novas lutas e glórias.</p>
+  </section>
+
+  <section id="operacoes" class="fade-in" aria-label="Operações da F.O.B.A.T">
+    <h2>Operações</h2>
+    <p>A F.O.B.A.T ainda está iniciando sua trajetória e, portanto, não realizou operações, recrutamentos ou treinamentos até o momento.</p>
+    <p>Nosso foco é construir uma unidade forte, disciplinada e preparada para atuar com excelência no futuro próximo.</p>
+  </section>
+
+  <section id="galeria" class="fade-in" aria-label="Galeria de imagens">
+    <h2>Galeria</h2>
+    <div class="gallery" aria-live="polite" aria-label="Imagens da unidade F.O.B.A.T">
+      <img src="https://cdn.pixabay.com/photo/2017/06/20/23/37/soldier-2424464_1280.jpg" alt="Soldado em treinamento" tabindex="0" />
+      <img src="https://cdn.pixabay.com/photo/2018/04/04/21/11/military-3297337_1280.jpg" alt="Equipe tática em ação" tabindex="0" />
+      <img src="https://cdn.pixabay.com/photo/2017/12/15/13/51/military-3017295_1280.jpg" alt="Operação noturna em campo" tabindex="0" />
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/12/54/military-1869573_1280.jpg" alt="Soldados em formação" tabindex="0" />
+      <img src="https://cdn.pixabay.com/photo/2018/08/22/12/52/military-3625536_1280.jpg" alt="Treinamento de armas" tabindex="0" />
+    </div>
+  </section>
+
+  <section id="noticias" class="fade-in" aria-label="Notícias recentes">
+    <h2>Notícias</h2>
+    <article class="news-item" tabindex="0">
+      <strong>30/07/2025</strong> — Unidade criada oficialmente. Início da estruturação da F.O.B.A.T.
+    </article>
+    <article class="news-item" tabindex="0">
+      <strong>01/08/2025</strong> — Página oficial lançada para manter a comunidade informada.
+    </article>
+  </section>
+
+  <section id="contato" class="fade-in" aria-label="Contato e redes sociais">
+    <h2>Contato</h2>
+    <p>Email oficial: <a class="contact-link" href="mailto:vexkaelfobat@gmail.com" target="_blank" rel="noopener noreferrer">vexkaelfobat@gmail.com</a></p>
+    <p>Discord: <a class="contact-link" href="https://discord.com/invite/vZ8QtAA7" target="_blank" rel="noopener noreferrer">https://discord.com/invite/vZ8QtAA7</a></p>
+    <p>Instagram: <a class="contact-link" href="https://www.instagram.com/soareshxc" target="_blank" rel="noopener noreferrer">@soareshxc</a></p>
+  </section>
+
+  <section id="recrutamento" class="fade-in" aria-label="Recrutamento">
+    <h2>Recrutamento</h2>
+    <p>A unidade está em fase inicial. Ainda não abrimos recrutamentos nem realizamos treinamentos.</p>
+    <p>Fique atento às nossas redes para futuras oportunidades.</p>
+  </section>
+
+  <section id="faq" aria-label="Perguntas frequentes">
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq1">Como posso me juntar à F.O.B.A.T?</button>
+      <div id="faq1" class="faq-answer" hidden>
+        <p>No momento, a unidade está em fase inicial e ainda não realiza recrutamento. Fique atento às redes sociais para futuras oportunidades.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq2">Quais os requisitos para ingressar na F.O.B.A.T?</button>
+      <div id="faq2" class="faq-answer" hidden>
+        <p>É necessário ter disciplina, comprometimento, e passar por uma avaliação física e psicológica, que serão detalhadas quando o recrutamento abrir.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq3">Quais são as normas de conduta na unidade?</button>
+      <div id="faq3" class="faq-answer" hidden>
+        <p>Respeito, disciplina, trabalho em equipe e sigilo são pilares fundamentais da FOBAT. Qualquer violação pode resultar em expulsão.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq4">Como são as operações da FOBAT?</button>
+      <div id="faq4" class="faq-answer" hidden>
+        <p>Ainda estamos em fase de formação e planejamento das operações. Futuramente, atuaremos em operações táticas e estratégicas conforme a necessidade.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq5">Como a FOBAT garante a segurança das informações dos membros?</button>
+      <div id="faq5" class="faq-answer" hidden>
+        <p>Utilizamos protocolos rigorosos de segurança digital e seguimos políticas internas para proteger os dados dos membros.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="depoimentos" aria-label="Depoimentos de membros">
+    <h2>Depoimentos</h2>
+    <blockquote class="testimonial" tabindex="0">
+      "Ser parte da FOBAT é um compromisso com a excelência e a lealdade. Aqui aprendi o verdadeiro significado de disciplina e irmandade."
+      <strong>- Soldado Victor S.</strong>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      "A unidade pode estar começando, mas já mostra um potencial incrível para formar operadores de elite."
+      <strong>- Oficial Carla M.</strong>
+    </blockquote>
+    <blockquote class="testimonial" tabindex="0">
+      "O treinamento ainda vai começar, mas a dedicação de todos deixa claro que esta é uma unidade para se orgulhar."
+      <strong>- Recruta João P.</strong>
+    </blockquote>
+  </section>
+</main>
+
+<button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo">&#8679;</button>
+
+<footer role="contentinfo">
+  <p>© 2025 FOBAT - Força Operacional Binacional de Ações Táticas</p>
+  <button id="privacyBtn" class="privacy-btn" aria-haspopup="dialog" aria-controls="privacyModal" aria-expanded="false">Política e Privacidade</button>
+</footer>
+
+<div id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true" tabindex="-1">
+  <div>
+    <img src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-4ad4-622f-a483-0cb91ba5cc26/raw?se=2025-08-02T18%3A09%3A58Z&sp=r&sv=2024-08-04&sr=b&scid=a370f0a4-69cb-55de-924f-fd91ea07ba61&skoid=5c72dd08-68ae-4091-b4e1-40ccec0693ae&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-01T20%3A15%3A02Z&ske=2025-08-02T20%3A15%3A02Z&sks=b&skv=2024-08-04&sig=SBF7TXgQqefjdc3ea7OvIx2wkG/hVPDAsd7FFWnWLY4%3D" alt="Logo FOBAT" class="modal-logo" />
+    <button id="closePrivacy" aria-label="Fechar política de privacidade">&times;</button>
+    <h2 id="privacyTitle">Política de Privacidade da FOBAT</h2>
+    <div id="privacyDesc" tabindex="0">
+      <!-- Conteúdo completo da política aqui -->
+      <p><strong>1. Introdução</strong><br>
+      A FOBAT valoriza a privacidade e segurança de todos os seus usuários, visitantes e membros. Esta Política de Privacidade tem como objetivo esclarecer todas as práticas relacionadas à coleta, uso, armazenamento e proteção das informações pessoais e dados coletados por meio do nosso site, serviços, eventos e comunicação.</p>
+      
+      <p>Ao acessar, utilizar ou interagir com a FOBAT, você concorda com os termos desta Política de Privacidade e com o uso dos seus dados conforme aqui especificado.</p>
+
+      <p><strong>2. Quais dados coletamos</strong></p>
+      <ul>
+        <li><strong>2.1 Dados fornecidos diretamente</strong><br>
+        Nome completo, data de nascimento, CPF/RG (quando aplicável)<br>
+        Endereço de e-mail e telefone para contato<br>
+        Dados para recrutamento, cadastro em eventos ou treinamentos<br>
+        Mensagens e comunicações enviadas através do site, redes sociais ou e-mail</li>
+
+        <li><strong>2.2 Dados coletados automaticamente</strong><br>
+        Endereço IP e localização aproximada<br>
+        Informações do navegador, sistema operacional e dispositivo utilizado<br>
+        Dados de navegação no site (páginas visitadas, tempo de permanência, cliques)<br>
+        Cookies e outras tecnologias de rastreamento (detalhado no item 5)</li>
+      </ul>
+
+      <p><strong>3. Finalidades do uso dos dados</strong><br>
+      Os dados coletados são utilizados para:<br>
+      Gerenciar o cadastro e participação de usuários e membros na FOBAT<br>
+      Enviar comunicações oficiais, atualizações, convites para eventos e novidades<br>
+      Personalizar a experiência do usuário no site<br>
+      Garantir a segurança dos nossos sistemas e prevenir fraudes ou usos indevidos<br>
+      Cumprir obrigações legais e regulatórias aplicáveis</p>
+
+      <p><strong>4. Compartilhamento de dados</strong><br>
+      A FOBAT NÃO vende, aluga ou comercializa seus dados pessoais para terceiros.<br>
+      Compartilhamos seus dados apenas com:<br>
+      Parceiros autorizados e confiáveis para finalidades específicas, como processamento de inscrições, quando necessário e com garantias contratuais<br>
+      Autoridades legais em caso de solicitações judiciais ou administrativas válidas<br>
+      Serviços de hospedagem, provedores técnicos e plataformas que suportam nosso site e comunicações (sempre respeitando sigilo e segurança)</p>
+
+      <p><strong>5. Uso de Cookies e Tecnologias Semelhantes</strong><br>
+      A FOBAT utiliza cookies e tecnologias semelhantes para melhorar a experiência do usuário, analisar o desempenho do site e oferecer conteúdo relevante.<br>
+      Tipos de Cookies Utilizados:<br>
+      Cookies Essenciais: Necessários para funcionamento básico do site.<br>
+      Cookies de Desempenho e Análise: Para entender como os usuários utilizam o site e melhorar nossos serviços.<br>
+      Cookies Funcionais: Para lembrar preferências e configurações.<br>
+      Cookies de Publicidade: Para exibir anúncios relevantes, quando aplicável.<br>
+      Gerenciamento e Consentimento:<br>
+      Ao acessar o site, o usuário recebe um aviso de cookies para que possa consentir ou configurar suas preferências.<br>
+      O usuário pode, a qualquer momento, gerenciar ou excluir cookies por meio das configurações do navegador.</p>
+
+      <p><strong>6. Segurança dos Dados</strong><br>
+      A FOBAT adota medidas técnicas, administrativas e físicas para proteger os dados contra acessos não autorizados, perda, alteração ou divulgação indevida.<br>
+      No entanto, devido à natureza da internet, não garantimos segurança absoluta contra invasões ou ataques cibernéticos.</p>
+
+      <p><strong>7. Retenção dos Dados</strong><br>
+      Os dados pessoais são mantidos enquanto forem necessários para os fins descritos nesta política ou para cumprir obrigações legais.<br>
+      Após o término do relacionamento ou exclusão da conta, os dados podem ser armazenados por prazo adicional para cumprimento legal ou proteção contra responsabilidades.</p>
+
+      <p><strong>8. Direitos do Usuário</strong><br>
+      Você tem o direito de:<br>
+      Acessar seus dados pessoais<br>
+      Corrigir dados incompletos ou incorretos<br>
+      Solicitar a exclusão ou anonimização dos dados, quando aplicável<br>
+      Revogar o consentimento para uso de dados, quando for a base legal<br>
+      Solicitar portabilidade dos dados para outro fornecedor<br>
+      Reclamar com a autoridade de proteção de dados em caso de abuso<br>
+      Para exercer seus direitos, entre em contato conosco pelo e-mail oficial.</p>
+
+      <div style="font-size:16px; font-weight:700; color:#ff4444; margin: 2rem 0; border: 3px solid #ff4444; padding: 1rem; text-align: center;">
+        <strong>AVISO IMPERATIVO:</strong><br><br>
+        QUALQUER INFORMAÇÃO VAZADA ATRAVÉS DOS MEIOS DE COMUNICAÇÃO OU PLATAFORMAS DA FOBAT, BEM COMO AÇÕES, ATITUDES, OU CONDUTAS REALIZADAS NA VIDA REAL QUE SEJAM REPRODUZIDAS A PARTIR DE INSTRUÇÕES, PRÁTICAS OU CONTEÚDOS DA FOBAT, NÃO SERÃO DE RESPONSABILIDADE DA UNIDADE.<br><br>
+        A FOBAT NÃO SE RESPONSABILIZA POR QUAISQUER DANOS, PREJUÍZOS, OU CONSEQUÊNCIAS DIRETAS OU INDIRETAS DECORRENTES DE VAZAMENTO DE INFORMAÇÕES OU DA REPRODUÇÃO DE AÇÕES NA VIDA REAL BASEADAS EM CONTEÚDOS DO SITE, REDES SOCIAIS, TREINAMENTOS OU COMUNICAÇÃO.
+      </div>
+
+      <p><strong>9. Atualizações da Política</strong><br>
+      Esta política poderá ser atualizada periodicamente. Sempre que houver mudanças significativas, avisaremos por meio dos nossos canais oficiais.</p>
+
+      <p><strong>10. Contato</strong><br>
+      Em caso de dúvidas, solicitações ou reclamações relacionadas à privacidade, envie um e-mail para: privacidade@fobat.com.br</p>
+
+      <p><em>Última atualização: 02 de agosto de 2025</em></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
+  // Privacy modal open/close
+  const privacyBtn = document.getElementById('privacyBtn');
+  const privacyModal = document.getElementById('privacyModal');
+  const closePrivacyBtn = document.getElementById('closePrivacy');
+
+  privacyBtn.addEventListener('click', () => {
+    privacyModal.style.display = 'block';
+    privacyModal.setAttribute('aria-hidden', 'false');
+    privacyBtn.setAttribute('aria-expanded', 'true');
+    privacyModal.focus();
+  });
+
+  closePrivacyBtn.addEventListener('click', () => {
+    privacyModal.style.display = 'none';
+    privacyModal.setAttribute('aria-hidden', 'true');
+    privacyBtn.setAttribute('aria-expanded', 'false');
+    privacyBtn.focus();
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && privacyModal.style.display === 'block') {
+      privacyModal.style.display = 'none';
+      privacyModal.setAttribute('aria-hidden', 'true');
+      privacyBtn.setAttribute('aria-expanded', 'false');
+      privacyBtn.focus();
+    }
+  });
+
+  // FAQ accordion
+  const faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      const answer = document.getElementById(button.getAttribute('aria-controls'));
+      if (!expanded) {
+        answer.hidden = false;
+        answer.style.display = 'block';
+      } else {
+        answer.hidden = true;
+        answer.style.display = 'none';
+      }
+      button.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
