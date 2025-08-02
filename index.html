@@ -22,6 +22,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>F.O.B.A.T - Força Operacional Binacional de Ações Táticas</title>
+
+<!-- Favicon adicionado -->
+<link rel="icon" href="https://sdmntpreastus.oaiusercontent.com/files/00000000-d0d0-61f9-b5cc-fc6294ebe072/raw" type="image/png" />
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 <style>
   /* Reset */
@@ -191,6 +195,37 @@
     text-decoration: underline;
   }
 
+  /* Contatos extra na seção contato */
+  .contact-icons {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+  }
+  .contact-icons a {
+    color: #bbb;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.1rem;
+    user-select: text;
+    transition: color 0.3s ease;
+  }
+  .contact-icons a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .contact-icons svg {
+    width: 20px;
+    height: 20px;
+    fill: #bbb;
+    transition: fill 0.3s ease;
+  }
+  .contact-icons a:hover svg {
+    fill: #fff;
+  }
+
   /* Footer */
   footer {
     margin-top: 60px;
@@ -219,6 +254,85 @@
     background: #333;
     color: #fff;
     border-color: #fff;
+  }
+
+  /* FAQ */
+  section#faq {
+    margin-top: 50px;
+  }
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  .faq-question {
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px;
+    user-select: none;
+  }
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .faq-question.active::after {
+    content: '-';
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    margin-top: 8px;
+    color: #ccc;
+  }
+  .faq-answer.open {
+    max-height: 200px; /* suficiente para a resposta */
+  }
+
+  /* Depoimentos */
+  section#testimonials {
+    margin-top: 50px;
+  }
+  .testimonial {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.7);
+  }
+  .testimonial p {
+    font-style: italic;
+  }
+  .testimonial strong {
+    display: block;
+    margin-top: 12px;
+    color: #bbb;
+    font-weight: 700;
+  }
+
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    background: #000;
+    color: #eee;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+  }
+  #backToTop:hover {
+    opacity: 1;
   }
 
   /* Responsive */
@@ -259,7 +373,7 @@
 <body>
 
 <nav class="sidebar" role="navigation" aria-label="Menu principal">
-  <img class="logo" src="https://sdmntpreastus.oaiusercontent.com/files/00000000-d0d0-61f9-b5cc-fc6294ebe072/raw?se=2025-08-02T13%3A15%3A28Z&sp=r&sv=2024-08-04&sr=b&scid=920c5c27-da28-5ce6-ace2-661e6bfbced7&skoid=02b7f7b5-29f8-416a-aeb6-99464748559d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-02T09%3A53%3A05Z&ske=2025-08-03T09%3A53%3A05Z&sks=b&skv=2024-08-04&sig=s/ehmSF5jn91BIGbl7KK7/SvWMbMKvDCWV7eNg8AiHk%3D" alt="Logo F.O.B.A.T" />
+  <img class="logo" src="https://sdmntpreastus.oaiusercontent.com/files/00000000-d0d0-61f9-b5cc-fc6294ebe072/raw" alt="Logo F.O.B.A.T" />
   <ul>
     <li><a href="#home" class="active" aria-current="page" tabindex="0">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9 9 9-1.5 1.5L12 5.5 4.5 13.5z"/><path d="M12 22v-8h6v8z"/></svg>
@@ -285,90 +399,155 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2 0 4-1 4-3s-2-3-4-3-4 1-4 3 2 3 4 3z"/></svg>
       <span class="nav-label">Recrutamento</span>
     </a></li>
+    <li><a href="#faq" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+      <span class="nav-label">FAQ</span>
+    </a></li>
+    <li><a href="#testimonials" tabindex="0">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span class="nav-label">Depoimentos</span>
+    </a></li>
   </ul>
 </nav>
 
-<main class="content" role="main" tabindex="-1">
-  <section id="home" tabindex="0" aria-label="Seção Institucional">
-    <h1 class="hero-title">A morte não é o fim — é apenas o recomeço para novas lutas.</h1>
-    <p class="hero-subtitle">Não lutamos por glória, mas por propósito.</p>
-    <h2>Institucional</h2>
-    <p>A F.O.B.A.T – Força Operacional Binacional de Ações Táticas – é uma unidade de elite dedicada a missões especiais, operando sob os princípios de lealdade, precisão e fraternidade entre nações. Atuamos nas sombras, firmes na doutrina, leais até o último suspiro.</p>
+<main class="content" role="main" id="home">
+  <h1 class="hero-title" tabindex="0">F.O.B.A.T – Força Operacional Binacional de Ações Táticas</h1>
+  <p class="hero-subtitle" tabindex="0">
+    Não lutamos por glória, mas por propósito.<br/>
+    Agimos nas sombras, firmes na doutrina, leais até o último suspiro.<br/>
+    A morte não é o fim — é apenas o recomeço para novas lutas e glórias.
+  </p>
+
+  <section id="about" tabindex="0" aria-label="Seção Sobre a Unidade">
+    <h2>Sobre a Unidade</h2>
+    <p>Somos uma força tática de elite, com a mais rígida doutrina de combate tático.</p>
+    <p>Agimos nas sombras, firmes na doutrina, leais até o último suspiro, focados em resultados que impactam decisivamente.</p>
   </section>
 
   <section id="operacoes" tabindex="0" aria-label="Seção Operações">
-    <h2>Operações</h2>
-    <p>As operações da F.O.B.A.T incluem missões conjuntas de infiltração, resgate, neutralização de ameaças e reconhecimento aéreo com drones e tecnologia avançada. Nossas unidades estão preparadas para cenários de guerra híbrida e combate urbano.</p>
+    <h2>Operações em Destaque</h2>
+    <p>Nossas principais operações são planejadas meticulosamente e executadas com precisão cirúrgica, visando segurança máxima e eficácia no campo.</p>
+    <ul>
+      <li>Operação Golem: Incursão silenciosa em território hostil.</li>
+      <li>Operação Eclipse: Interceptação e neutralização de ameaças.</li>
+      <li>Operação Sombra: Infiltração e reconhecimento avançado.</li>
+    </ul>
   </section>
 
-  <section id="galeria" tabindex="0" aria-label="Seção Galeria">
+  <section id="galeria" tabindex="0" aria-label="Galeria de imagens da unidade">
     <h2>Galeria</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1616352119444-ae3ac49b90dd?auto=format&fit=crop&w=700&q=80" alt="Operação 1" />
-      <img src="https://images.unsplash.com/photo-1581092918360-c70cfa5bfa6c?auto=format&fit=crop&w=700&q=80" alt="Operação 2" />
-      <img src="https://images.unsplash.com/photo-1590691565602-ef372f23540b?auto=format&fit=crop&w=700&q=80" alt="Treinamento" />
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Drone" />
-      <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=700&q=80" alt="Equipe" />
-      <img src="https://images.unsplash.com/photo-1511324524655-c9c6bc984f49?auto=format&fit=crop&w=700&q=80" alt="Aeronave" />
+    <div class="gallery" role="list">
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/168f5774-8dca-4422-8a9a-df26fab93645/dh316g6-123e80c1-5664-44fb-8fb0-e652ed5d4699.png" alt="Operação em ação" role="listitem" />
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/168f5774-8dca-4422-8a9a-df26fab93645/dh31bbi-0bdfc68c-7333-446b-8c9f-0a2c278cdf79.png" alt="Equipe em treinamento" role="listitem" />
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/168f5774-8dca-4422-8a9a-df26fab93645/dh2y72v-349f4416-d3cc-49c6-8234-cb32aa0ca1e3.png" alt="Simulação noturna" role="listitem" />
     </div>
   </section>
 
   <section id="noticias" tabindex="0" aria-label="Seção Notícias">
-    <h2>Notícias</h2>
-    <div class="news-item"><strong>[30/07/2025]</strong> Equipe Alpha realiza missão conjunta com tropas aliadas em região de selva hostil. Resultados foram acima do esperado, com captura de objetivos críticos.</div>
-    <div class="news-item"><strong>[20/07/2025]</strong> Novo programa de simulação tática é implementado com apoio de forças internacionais.</div>
-    <div class="news-item"><strong>[10/07/2025]</strong> Treinamento de resgate aéreo realizado com sucesso na base binacional.</div>
+    <h2>Últimas Notícias</h2>
+    <div class="news-item" role="article">
+      <strong>01/08/2025 - Recrutamento Aberto:</strong>
+      <p>A F.O.B.A.T está com inscrições abertas para novos recrutas. Se você tem disciplina e coragem, junte-se a nós.</p>
+    </div>
+    <div class="news-item" role="article">
+      <strong>20/07/2025 - Treinamento Avançado:</strong>
+      <p>Concluímos com sucesso um ciclo intensivo de treinamento em técnicas de infiltração e sobrevivência.</p>
+    </div>
   </section>
 
   <section id="contato" tabindex="0" aria-label="Seção Contato">
     <h2>Contato</h2>
-    <p>Email: <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a></p>
-    <p>Instagram: <a href="https://instagram.com/soareshxc" target="_blank" rel="noopener" class="contact-link">@soareshxc</a></p>
-    <p>Discord: <a href="https://discord.gg/vZ8QtAA7" target="_blank" rel="noopener" class="contact-link">discord.gg/vZ8QtAA7</a></p>
+    <p>Para dúvidas e informações, envie um email para <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a> ou visite nossas redes sociais.</p>
+
+    <div class="contact-icons" aria-label="Redes sociais e contato">
+      <a href="https://discord.com/invite/vZ8QtAA7" target="_blank" rel="noopener" aria-label="Servidor Discord F.O.B.A.T">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.5c-1.5.5-2.8.7-4 .7-1.2 0-2.5-.2-4-.7m-8 0a12 12 0 0 1 0-11m14 0a12 12 0 0 0 0 11"></path><circle cx="12" cy="12" r="10"></circle></svg>
+        Discord
+      </a>
+      <a href="https://www.instagram.com/soareshxc" target="_blank" rel="noopener" aria-label="Instagram F.O.B.A.T">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+        Instagram
+      </a>
+      <a href="mailto:vexkaelfobat@gmail.com" class="contact-link" aria-label="Enviar email para F.O.B.A.T">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Email
+      </a>
+    </div>
   </section>
 
   <section id="recrutamento" tabindex="0" aria-label="Seção Recrutamento">
     <h2>Recrutamento</h2>
-    <p>Quer fazer parte da F.O.B.A.T? Estamos recrutando novos membros para nossas operações táticas. Buscamos profissionais dedicados, treinados e comprometidos com nossos valores.</p>
-    <p>Envie seu currículo e carta de apresentação para <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a> com o assunto “Recrutamento F.O.B.A.T”.</p>
+    <p>Estamos buscando profissionais dedicados para integrar nossas fileiras. Venha fazer parte da elite e marcar a diferença.</p>
+    <p>Envie seu currículo e histórico para <a href="mailto:recrutamento@fobat.com" class="contact-link">recrutamento@fobat.com</a>.</p>
   </section>
 
-  <footer>
-    <a href="politicas.html" target="_blank" rel="noopener" class="privacy-btn" aria-label="Abrir página de Políticas de Privacidade">
-      Políticas de Privacidade
-    </a><br/>
-    &copy; 2025 F.O.B.A.T – Todos os direitos reservados.
+  <section id="faq" tabindex="0" aria-label="Seção FAQ">
+    <h2>Perguntas Frequentes (FAQ)</h2>
+    <div class="faq-item">
+      <div class="faq-question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq1-answer" id="faq1-question">Como faço para me inscrever no recrutamento?</div>
+      <div class="faq-answer" id="faq1-answer" role="region" aria-labelledby="faq1-question">Envie seu currículo para o email recrutamento@fobat.com com seus dados e histórico de operações.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" tabindex="0" role="button" aria-expanded="false" aria-controls="faq2-answer" id="faq2-question">Qual é o perfil exigido para os novos recrutas?</div>
+      <div class="faq-answer" id="faq2-answer" role="region" aria-labelledby="faq2-question">Buscamos profissionais disciplinados, com experiência em operações táticas e espírito de equipe.</div>
+    </div>
+  </section>
+
+  <section id="testimonials" tabindex="0" aria-label="Seção Depoimentos">
+    <h2>Depoimentos</h2>
+    <div class="testimonial">
+      <p>"A F.O.B.A.T mudou minha visão sobre trabalho em equipe e disciplina. Aqui, cada missão é uma lição." </p>
+      <strong>- Soldado R.</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Orgulho de fazer parte de uma unidade que atua nas sombras, onde cada detalhe importa." </p>
+      <strong>- Capitão M.</strong>
+    </div>
+  </section>
+
+  <button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
+
+  <footer role="contentinfo">
+    <a href="#privacy" class="privacy-btn" tabindex="0">Política de Privacidade</a>
+    <p>&copy; 2025 F.O.B.A.T - Todos os direitos reservados.</p>
+    <p>Contato: 
+      <a href="mailto:vexkaelfobat@gmail.com" class="contact-link">vexkaelfobat@gmail.com</a> | 
+      <a href="https://discord.com/invite/vZ8QtAA7" target="_blank" rel="noopener" class="contact-link">Discord</a> | 
+      <a href="https://www.instagram.com/soareshxc" target="_blank" rel="noopener" class="contact-link">Instagram</a>
+    </p>
   </footer>
 </main>
 
 <script>
-  // Marcar item ativo conforme scroll
-  const sections = document.querySelectorAll('main.content section');
-  const navLinks = document.querySelectorAll('nav.sidebar ul li a');
-
-  function onScroll() {
-    const scrollPos = window.scrollY + 200; 
-    sections.forEach(section => {
-      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + section.id) {
-            link.classList.add('active');
-          }
-        });
+  // FAQ toggle
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const expanded = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', String(!expanded));
+      const answer = document.getElementById(q.getAttribute('aria-controls'));
+      if(answer) {
+        answer.classList.toggle('open');
+      }
+      q.classList.toggle('active');
+    });
+    q.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        q.click();
       }
     });
-  }
-  window.addEventListener('scroll', onScroll);
-
-  // Navegação acessível: focar main no click do menu
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const id = link.getAttribute('href').slice(1);
-      const section = document.getElementById(id);
-      section.focus();
-    });
   });
+
+  // Back to top button visibility
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300) {
+      backToTop.style.display = 'block';
+    } else {
+      backToTop.style.display = 'none';
+    }
+  });
+  backToTop.style.display = 'none';
 </script>
 
 </body>
